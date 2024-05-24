@@ -9,7 +9,7 @@ const authAdmin=((req,res,next)=>{
 
 
     let token=authHeader.split(" ")[1]
-     jwt.verify(token,process.env.SECRET_KEY_VENTOR,(err)=>{
+     jwt.verify(token,process.env.SECRET_KEY_ADMIN,(err)=>{
         if(err){
             return res.status(403).json({
                 message:"failure",

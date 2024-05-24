@@ -1,4 +1,5 @@
 const userModel = require("../model/userModel");
+const transactionModel = require("../model/transactionModel")
 const transactionsModel = require("../model/transactionModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -94,4 +95,35 @@ const withdrawAmount = async (req, res) => {
   });
 };
 
-module.exports = { userRegister, depositAmount, withdrawAmount };
+const viewBalance = async (req,res) => {
+    const userId = req.params.userId;
+
+    const user = await userModel.findById(userId);
+
+    if(!user){
+        return res.status(400).json('user not found');
+    }
+
+    const balance =  user.balance
+
+    res.status(200).json({
+        status: "success",
+        message: "balance fetched successfuly",
+        data:  balance ,
+      });
+}
+
+const fetchTransactions  = async (req,res) => {
+
+    const userId = req.params.userId;
+
+    const userTransactions = await transactionModel.find({userId : userId})
+
+    res.status(200).json({
+        status: "success",
+        message: "transactions fetched successfuly",
+        data:  userTransactions ,
+      });
+}
+
+module.exports = { userRegister, depositAmount, withdrawAmount,viewBalance,fetchTransactions };

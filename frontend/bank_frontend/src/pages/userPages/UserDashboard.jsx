@@ -50,7 +50,7 @@ function UserDashboard() {
                             style={{ textAlign: "center" }}
                         >
                             {" "}
-                            <h2>Vendor</h2>
+                            <h2>Welcome</h2>
                         </MenuItem>
 
                         <MenuItem  onClick={() => setChildren(<Deposit />)} icon={<AddCardIcon/>}>

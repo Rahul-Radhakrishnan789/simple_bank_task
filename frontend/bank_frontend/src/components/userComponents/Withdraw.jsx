@@ -8,7 +8,7 @@ export default function Withdraw() {
   const handleDeposit = async () => {
     try {
         const userId = localStorage.getItem("userId")
-      const response = await axios.post(`/withdrawamount/${userId}`,{ amount});
+      const response = await axios.post(`/withdrawamount/${userId}`,{ amount: parseFloat(amount) });
       console.log(response.data);
       alert('withdraw successful');
       setAmount(''); 

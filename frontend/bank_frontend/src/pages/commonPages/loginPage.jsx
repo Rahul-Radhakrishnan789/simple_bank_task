@@ -86,6 +86,9 @@ const LoginPage = () => {
             }
         }
         } catch (error) {
+            if (error.response.status === 404) {
+                setErrorMessage("Account blocked temporarily");
+            }
             if (error.response.status === 403) {
                 setErrorMessage("invalid password");
             }

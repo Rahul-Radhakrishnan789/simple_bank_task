@@ -47,9 +47,18 @@ const commonLogin=async(req,res)=>{
     
     }
     const user=await userModel.findOne({email:email})
+
+
+
     if(user){
+        if (user.isDisabled) {
+            console.log('oombi')
+            return res.status(404).json({
+                message: "User account is disabled"
+            });
+        }
         const comparePassword = bcrypt.compare(password, user?.password) 
-        // console.log("pass",comparePassword);
+        
         if(comparePassword){
             const secret = process.env.SECRET_KEY_USER;
             const token = jwt.sign({

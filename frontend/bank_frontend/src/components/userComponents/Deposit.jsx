@@ -7,8 +7,8 @@ export default function Deposit() {
 
   const handleDeposit = async () => {
     try {
-        const userId = localStorage.getItem("userId")
-      const response = await axios.post(`/depositamount/${userId}`,{ amount});
+        const userId = localStorage.getItem("userId");
+      const response = await axios.post(`/depositamount/${userId}`,{ amount: parseFloat(amount) });
       console.log(response.data);
       alert('Deposit successful');
       setAmount(''); 
